@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuttab Ummul Quro Cileungsi | Mulia Dengan Iman & Ilmu</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,900&display=swap" rel="stylesheet" />
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background: #ffffff; scroll-behavior: smooth; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        /* --- NAVBAR --- */
+        .taskbar {
+            position: fixed; top: 0; left: 0; right: 0; padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: transparent; 
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .taskbar.scrolled {
+            background: rgba(45, 7, 7, 0.98); padding: 15px 5%;
+            border-bottom: 2px solid #fbbf24; backdrop-filter: blur(10px);
+        }
+
+        /* --- HERO & PARALLAX --- */
+        .hero-luxury {
+            height: 100vh; background: radial-gradient(circle at center, #5a0909 0%, #1a0404 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white; position: relative; overflow: hidden;
+        }
+        .parallax-content { will-change: transform; transition: transform 0.2s ease-out; }
+        .glow-text {
+            font-size: clamp(3rem, 15vw, 11rem); font-weight: 900; line-height: 0.8;
+            text-shadow: 0 0 70px rgba(251, 191, 36, 0.6); letter-spacing: -0.05em;
+        }
+
+        /* --- TARGET CARDS --- */
+        .target-card {
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            border-left: 4px solid #fbbf24; cursor: pointer;
+        }
+        .target-card:hover {
+            background: #fbbf24 !important; transform: translateX(15px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); color: #450a0a !important;
+        }
+
+        .stadium-panel {
+            background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(251, 191, 36, 0.2);
+            border-radius: 100px; padding: 60px; min-height: 500px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        /* --- ANIMASI POPUP (PERBAGUS PENUTUP) --- */
+        .pop-active { animation: popIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .pop-closing { animation: popOut 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards; }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        @keyframes popOut {
+            from { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+            to { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(15px); }
+        }
+
+        /* --- ACCORDION BIAYA --- */
+        .cost-container {
+            background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            margin-bottom: 1.2rem; position: relative; overflow: hidden;
+        }
+        .cost-container:hover { transform: translateY(-5px); border-color: #fbbf24; }
+        .cost-header { padding: 1.8rem 2.2rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .cost-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1); padding: 0 2.2rem; }
+        .cost-container.active .cost-body { grid-template-rows: 1fr; padding-bottom: 2rem; background: #fffdf5; }
+        .cost-content { overflow: hidden; opacity: 0; transition: opacity 0.5s ease; }
+        .cost-container.active .cost-content { opacity: 1; padding-top: 1rem; border-top: 1px solid rgba(251, 191, 36, 0.2); }
+
+        .btn-close-minimal {
+            position: absolute; top: 30px; right: 40px; color: #fbbf24;
+            font-size: 24px; cursor: pointer; opacity: 0.5; transition: 0.3s;
+        }
+        .btn-close-minimal:hover { opacity: 1; transform: rotate(90deg); }
+
+        .prog-btn { transition: 0.4s; border: 2px solid #f3f4f6; background: white; }
+        .prog-btn:hover { background: #450a0a; color: white; border-color: #fbbf24; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+    <nav class="taskbar" id="navbar">
+        <div class="text-white font-black text-2xl tracking-tighter uppercase italic">
+            KUQI <span class="text-yellow-400">CILEUNGSI</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] font-bold tracking-[0.3em] uppercase items-center text-white">
+            <a href="#kurikulum" class="hover:text-yellow-400">Pilar</a>
+            <a href="#target" class="hover:text-yellow-400">Target</a>
+            <a href="#biaya" class="hover:text-yellow-400">Biaya</a>
+            <a href="#program" class="hover:text-yellow-400">Program</a>
+        </div>
+    </nav>
+
+    <section class="hero-luxury">
+        <div class="parallax-content" id="hero-content">
+            <div class="inline-block px-8 py-2 border-2 border-yellow-500/30 rounded-full text-[11px] tracking-[0.5em] text-yellow-400 uppercase mb-10 bg-yellow-500/5">
+                Mulia Dengan Iman & Ilmu
+            </div>
+            <h1 class="glow-text">KUTTAB</h1>
+            <p class="text-2xl md:text-5xl tracking-[0.4em] font-light uppercase italic text-yellow-500">Ummul Quro Cileungsi</p>
+        </div>
+    </section>
+
+    <section id="kurikulum" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h2 class="text-5xl font-bold text-red-950 italic">Pilar Utama</h2>
+            <p class="text-gray-400 mt-4 uppercase tracking-widest text-[10px]">Manhaj Nubuwah untuk Generasi Gemilang</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="p-12 rounded-[3rem] border border-gray-100 hover:shadow-2xl transition-all group">
+                <h3 class="text-3xl font-bold text-red-950 mb-6 italic border-b-2 border-yellow-500 w-max group-hover:pr-10 transition-all">Iman</h3>
+                <p class="text-gray-500 leading-relaxed">Menanamkan pengenalan kepada Allah Ta'ala sebagai pondasi utama sebelum menerima beban ilmu.</p>
+            </div>
+            <div class="p-12 rounded-[3rem] border border-gray-100 hover:shadow-2xl transition-all group">
+                <h3 class="text-3xl font-bold text-red-950 mb-6 italic border-b-2 border-yellow-500 w-max group-hover:pr-10 transition-all">Adab</h3>
+                <p class="text-gray-500 leading-relaxed">Membentuk karakter islami yang merujuk pada keteladanan para Salafus Shalih.</p>
+            </div>
+            <div class="p-12 rounded-[3rem] border border-gray-100 hover:shadow-2xl transition-all group">
+                <h3 class="text-3xl font-bold text-red-950 mb-6 italic border-b-2 border-yellow-500 w-max group-hover:pr-10 transition-all">Al-Qur'an</h3>
+                <p class="text-gray-500 leading-relaxed">Tahfizh yang mutqin serta tadabbur ayat-ayat kauniyah sebagai nafas utama pendidikan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="target" class="py-32 bg-[#2d0707] text-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-start">
+            <div>
+                <h2 class="text-5xl font-bold mb-12 italic border-l-8 border-yellow-500 pl-8 uppercase">Target Lulusan</h2>
+                <div class="space-y-4">
+                    <div onclick="showTarget(1)" class="target-card p-6 flex items-center gap-6 bg-white/5">
+                        <span class="text-yellow-500 font-bold text-3xl">01</span>
+                        <p class="text-xl font-bold uppercase tracking-tighter">Hafalan Al-Qur'an Mutqin</p>
+                    </div>
+                    <div onclick="showTarget(2)" class="target-card p-6 flex items-center gap-6 bg-white/5">
+                        <span class="text-yellow-500 font-bold text-3xl">02</span>
+                        <p class="text-xl font-bold uppercase tracking-tighter">Wawasan Siroh Nabawiyyah</p>
+                    </div>
+                    <div onclick="showTarget(3)" class="target-card p-6 flex items-center gap-6 bg-white/5">
+                        <span class="text-yellow-500 font-bold text-3xl">03</span>
+                        <p class="text-xl font-bold uppercase tracking-tighter">Adab & Akhlaqul Karimah</p>
+                    </div>
+                    <div onclick="showTarget(4)" class="target-card p-6 flex items-center gap-6 bg-white/5">
+                        <span class="text-yellow-500 font-bold text-3xl">04</span>
+                        <p class="text-xl font-bold uppercase tracking-tighter">Tsaqofah & Literasi Dasar</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stadium-panel" id="main-panel">
+                <div id="default-view" class="text-center">
+                    <p class="text-[120px] font-black leading-none text-white">5-12</p>
+                    <p class="text-yellow-500 tracking-[0.5em] font-bold uppercase text-xs">Tahun Hijriyyah</p>
+                </div>
+                <div id="detail-view" class="hidden w-full text-center px-6">
+                    <div onclick="hideTarget()" class="btn-close-minimal">✕</div>
+                    <h3 id="detail-title" class="text-3xl font-bold text-yellow-500 mb-6 italic uppercase"></h3>
+                    <p id="detail-body" class="text-gray-300 leading-relaxed text-lg"></p>
+                    <button onclick="hideTarget()" class="mt-8 text-yellow-500 border border-yellow-500 px-8 py-2 rounded-full text-[10px] tracking-widest hover:bg-yellow-500 hover:text-red-950 transition font-bold uppercase">Tutup Detail</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="biaya" class="py-40 bg-gray-50 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-red-950 italic text-center uppercase tracking-tighter">Investasi Pendidikan</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4"></div>
+            </div>
+            <div class="accordion-group">
+                <div class="cost-container" onclick="toggleAccordion(this)">
+                    <div class="cost-header">
+                        <span class="font-bold text-red-950 uppercase text-sm tracking-tight">Pendaftaran & Observasi</span>
+                        <span class="font-black text-2xl text-red-950">Rp 350.000</span>
+                    </div>
+                    <div class="cost-body"><div class="cost-content text-gray-600 text-sm italic leading-relaxed">Meliputi biaya administrasi, formulir pendaftaran, serta proses observasi kesiapan santri.</div></div>
+                </div>
+                <div class="cost-container" onclick="toggleAccordion(this)">
+                    <div class="cost-header">
+                        <span class="font-bold text-red-950 uppercase text-sm tracking-tight">Uang Masuk (Gedung & Buku)</span>
+                        <span class="font-black text-2xl text-red-950">Rp 7.000.000</span>
+                    </div>
+                    <div class="cost-body"><div class="cost-content text-gray-600 text-sm italic leading-relaxed">Investasi sarana prasarana, pengadaan kitab kurikulum Iman & Adab, serta paket seragam santri.</div></div>
+                </div>
+                <div class="cost-container" onclick="toggleAccordion(this)">
+                    <div class="cost-header">
+                        <span class="font-bold text-red-950 uppercase text-sm tracking-tight">SPP Bulanan (Syahriyah)</span>
+                        <span class="font-black text-2xl text-red-950">Rp 450.000</span>
+                    </div>
+                    <div class="cost-body"><div class="cost-content text-gray-600 text-sm italic leading-relaxed">Iuran rutin untuk operasional harian sekolah dan program pendidikan santri.</div></div>
+                </div>
+                <div class="cost-container" onclick="toggleAccordion(this)">
+                    <div class="cost-header">
+                        <span class="font-bold text-red-950 uppercase text-sm tracking-tight">Infak Pendidikan</span>
+                        <span class="font-black text-2xl text-red-950 italic">Seikhlasnya</span>
+                    </div>
+                    <div class="cost-body"><div class="cost-content text-gray-600 text-sm italic leading-relaxed">Dana pengembangan sukarela untuk sarana dakwah dan pendidikan sesuai kelapangan hati orang tua.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="py-32 bg-white text-center px-6">
+        <h2 class="text-5xl font-bold text-red-950 mb-16 italic uppercase">Olahraga Sunnah</h2>
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+            <button onclick="showPop('berenang')" class="prog-btn px-10 py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest">Berenang</button>
+            <button onclick="showPop('memanah')" class="prog-btn px-10 py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest">Memanah</button>
+            <button onclick="showPop('berkuda')" class="prog-btn px-10 py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest">Berkuda</button>
+        </div>
+        <div id="pop-content" class="max-w-3xl mx-auto hidden bg-gray-50 p-12 rounded-[3rem] border-t-8 border-red-950 shadow-2xl text-left relative">
+            <div onclick="hidePop()" class="btn-close-minimal" style="color: #450a0a; top: 20px; right: 30px;">✕</div>
+            <h4 id="pop-title" class="text-4xl font-bold text-red-950 mb-6 italic text-center uppercase"></h4>
+            <div class="grid gap-8">
+                <div><p class="text-red-800 font-bold uppercase text-[9px] tracking-widest mb-2">Landasan Dalil</p><p id="pop-desc" class="italic text-xl text-gray-700 font-medium"></p></div>
+                <div><p class="text-red-800 font-bold uppercase text-[9px] tracking-widest mb-2">Manfaat Karakter</p><p id="pop-benefit" class="text-gray-600 leading-relaxed text-lg"></p></div>
+            </div>
+            <div class="mt-10 text-center"><button onclick="hidePop()" class="text-red-950 font-bold uppercase text-[10px] tracking-[0.3em] border-b-2 border-red-950 pb-1">Tutup Informasi</button></div>
+        </div>
+    </section>
+
+    <footer class="bg-[#1a0404] py-24 text-center text-white border-t-4 border-yellow-500">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <div class="text-yellow-500 font-black text-5xl tracking-tighter italic mb-2">KUQI</div>
+                <p class="text-[10px] tracking-[0.6em] text-yellow-500/60 uppercase font-bold">Ummul Quro Cileungsi</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 mb-16">
+                <a href="https://www.instagram.com/kuttabummulqurocileungsi/" target="_blank" class="text-[10px] font-black tracking-[0.3em] text-gray-500 hover:text-yellow-500 transition uppercase border-b border-transparent hover:border-yellow-500 pb-1">Instagram</a>
+                <a href="https://www.youtube.com/@kuttabcileungsi" target="_blank" class="text-[10px] font-black tracking-[0.3em] text-gray-500 hover:text-yellow-500 transition uppercase border-b border-transparent hover:border-yellow-500 pb-1">YouTube</a>
+                <a href="https://www.facebook.com/kuttab.ummulqurocileungsi" target="_blank" class="text-[10px] font-black tracking-[0.3em] text-gray-500 hover:text-yellow-500 transition uppercase border-b border-transparent hover:border-yellow-500 pb-1">Facebook</a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="flex flex-col items-center group">
+                    <span class="text-yellow-500 text-[10px] font-black tracking-[0.3em] uppercase mb-1">Hubungi Kami</span>
+                    <span class="text-xl font-bold group-hover:scale-110 transition">+62 812-3456-7890</span>
+                </a>
+            </div>
+            <p class="opacity-20 text-[8px] tracking-[0.5em] font-bold uppercase pt-8 border-t border-white/5">&copy; 2026 Kuttab Ummul Quro Cileungsi | Developed by Muhammad Alif</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Smooth Parallax Hero
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scroll = window.pageYOffset;
+                    const heroText = document.getElementById('hero-content');
+                    heroText.style.transform = `translateY(${scroll * 0.3}px)`; 
+                    const nav = document.getElementById('navbar');
+                    if (scroll > 50) nav.classList.add('scrolled');
+                    else nav.classList.remove('scrolled');
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        const targetData = {
+            1: { t: "Tahfizh Al-Qur'an", d: "Fokus pada kualitas hafalan dengan metode Talaqqi yang mutqin dan makhraj yang benar." },
+            2: { t: "Siroh Nabawiyyah", d: "Mempelajari sejarah Rasulullah ﷺ untuk meneladani strategi perjuangan beliau." },
+            3: { t: "Adab & Akhlak", d: "Menanamkan karakter islami berdasarkan tuntunan Sunnah para Salafus Shalih." },
+            4: { t: "Literasi Dasar", d: "Membekali santri dengan kecakapan baca, tulis, dan hitung yang terintegrasi nilai Islam." }
+        };
+
+        function showTarget(id) {
+            const det = document.getElementById('detail-view');
+            document.getElementById('default-view').classList.add('hidden');
+            det.classList.remove('hidden', 'pop-closing');
+            det.classList.add('pop-active');
+            document.getElementById('detail-title').innerText = targetData[id].t;
+            document.getElementById('detail-body').innerText = targetData[id].d;
+        }
+
+        function hideTarget() {
+            const det = document.getElementById('detail-view');
+            det.classList.replace('pop-active', 'pop-closing');
+            setTimeout(() => {
+                det.classList.add('hidden');
+                const def = document.getElementById('default-view');
+                def.classList.remove('hidden');
+                def.classList.add('pop-active');
+            }, 500);
+        }
+
+        const progInfo = {
+            berenang: { t: "Berenang", d: '"Ajarilah anak-anakmu berenang..."', b: "Melatih ketenangan dan memperkuat fisik tubuh." },
+            memanah: { t: "Memanah", d: '"Ketahuilah kekuatan itu adalah memanah."', b: "Melatih fokus, konsentrasi, dan kesabaran tinggi." },
+            berkuda: { t: "Berkuda", d: '"Kuda itu terikat kebaikan hingga kiamat."', b: "Membangun kepemimpinan dan keseimbangan tubuh." }
+        };
+
+        function showPop(key) {
+            const pop = document.getElementById('pop-content');
+            pop.classList.remove('hidden', 'pop-closing');
+            pop.classList.add('pop-active');
+            document.getElementById('pop-title').innerText = progInfo[key].t;
+            document.getElementById('pop-desc').innerText = progInfo[key].d;
+            document.getElementById('pop-benefit').innerText = progInfo[key].b;
+            pop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hidePop() {
+            const pop = document.getElementById('pop-content');
+            pop.classList.replace('pop-active', 'pop-closing');
+            setTimeout(() => pop.classList.add('hidden'), 500);
+        }
+
+        function toggleAccordion(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.cost-container').forEach(c => c.classList.remove('active'));
+            if (!isActive) element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
